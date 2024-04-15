@@ -31,9 +31,13 @@ public class CadernoController {
         return cadernoService.save(caderno);
     }
 
+    @PutMapping("/{id}")
+    public CadernoEntity update(@PathVariable Long id, @RequestBody CadernoEntity caderno) {
+        return cadernoService.update(id, caderno);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         cadernoService.deleteById(id);
     }
 }
-

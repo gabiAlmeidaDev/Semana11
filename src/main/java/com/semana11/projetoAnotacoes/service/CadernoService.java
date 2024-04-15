@@ -26,8 +26,17 @@ public class CadernoService {
         return cadernoRepository.save(caderno);
     }
 
+    public CadernoEntity update(Long id, CadernoEntity cadernoDetails) {
+        CadernoEntity caderno = cadernoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Caderno não encontrado com id: " + id));
+        caderno.setNome(cadernoDetails.getNome());
+        caderno.setIdUsuario(cadernoDetails.getIdUsuario());
+        return cadernoRepository.save(caderno);
+    }
+
     public void deleteById(Long id) {
         cadernoRepository.deleteById(id);
     }
 }
+
 
