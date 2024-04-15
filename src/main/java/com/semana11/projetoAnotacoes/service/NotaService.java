@@ -26,8 +26,19 @@ public class NotaService {
         return notaRepository.save(nota);
     }
 
+    public NotaEntity update(Long id, NotaEntity notaDetails) {
+        NotaEntity nota = notaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Nota não encontrada com id: " + id));
+        nota.setTitle(notaDetails.getTitle());
+        nota.setContent(notaDetails.getContent());
+        nota.setIdCaderno(notaDetails.getIdCaderno());
+        nota.setIdUsuario(notaDetails.getIdUsuario());
+        return notaRepository.save(nota);
+    }
+
     public void deleteById(Long id) {
         notaRepository.deleteById(id);
     }
 }
+
 
