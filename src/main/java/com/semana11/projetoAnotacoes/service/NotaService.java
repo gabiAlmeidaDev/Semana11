@@ -28,7 +28,7 @@ public class NotaService {
 
     public NotaEntity update(Long id, NotaEntity notaDetails) {
         NotaEntity nota = notaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Nota não encontrada com id: " + id));
+                .orElseThrow(() -> new RuntimeException("Nota com id: " + id + " não encontrada!"));
         nota.setTitle(notaDetails.getTitle());
         nota.setContent(notaDetails.getContent());
         nota.setIdCaderno(notaDetails.getIdCaderno());
