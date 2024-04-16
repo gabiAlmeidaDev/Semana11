@@ -3,6 +3,7 @@ package com.semana11.projetoAnotacoes.controller;
 import com.semana11.projetoAnotacoes.datasource.entity.NotaEntity;
 import com.semana11.projetoAnotacoes.service.NotaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,7 +37,14 @@ public class NotaController {
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
+
         notaService.deleteById(id);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<NotaEntity>> getAllNotasForCurrentUser() {
+        List<NotaEntity> notas = notaService.findAllNotasForCurrentUser();
+        return ResponseEntity.ok(notas);
     }
 }
 

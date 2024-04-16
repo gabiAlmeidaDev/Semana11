@@ -1,10 +1,6 @@
 package com.semana11.projetoAnotacoes.datasource.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -19,8 +15,17 @@ public class NotaEntity {
     private String title;
     private String content;
 
+    @Column(name = "caderno_id")
     private Long idCaderno;
-    private Long idUsuario;
+
+    @Column(name = "usuario_id")
+    private Long usuarioId;
 
 
+    public Long getIdUsuario() {
+        return usuarioId;
+    }
+    public void setIdUsuario(Long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
 }
