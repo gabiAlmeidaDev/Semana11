@@ -1,5 +1,6 @@
 package com.semana11.projetoAnotacoes.controller;
 
+import com.semana11.projetoAnotacoes.datasource.entity.PerfilEntity;
 import com.semana11.projetoAnotacoes.datasource.entity.UsuarioEntity;
 import com.semana11.projetoAnotacoes.datasource.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
+    public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(username, password)
         );
@@ -57,7 +58,7 @@ public class AuthenticationController {
         Instant now = Instant.now();
         String authorities = usuario.getPerfis()
                 .stream()
-                .map(perfil -> perfil.getNome())
+                .map(PerfilEntity::getNome)
                 .collect(Collectors.joining(" "));
 
         JwtClaimsSet claims = JwtClaimsSet.builder()
